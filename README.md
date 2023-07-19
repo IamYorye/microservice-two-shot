@@ -2,8 +2,8 @@
 
 Team:
 
-* Kelly Khalilinia - Hats
-* Person 2 - Which microservice?
+* Kelly - Hats microservice
+* Jaspreet - Shoes microservice
 
 ## Design
 
