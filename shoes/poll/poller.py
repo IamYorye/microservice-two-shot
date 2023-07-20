@@ -5,7 +5,7 @@ import time
 import json
 import requests
 
-sys.path.append("")
+sys.path.append("shoes")
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "shoes_project.settings")
 django.setup()
 
@@ -18,7 +18,7 @@ def get_bins():
     content = json.loads(response.content)
     for bin in content["bins"]:
         BinVO.objects.update_or_create(
-            import_href=bin["href"],
+            import_href=bin["href"], # enforces uniqueness
             defaults={"closet_name": bin["closet_name"]},
         )
 
@@ -28,7 +28,6 @@ def poll():
         print('Shoes poller polling for data')
         try:
             get_bins()
-            pass
         except Exception as e:
             print(e, file=sys.stderr)
         time.sleep(60)
