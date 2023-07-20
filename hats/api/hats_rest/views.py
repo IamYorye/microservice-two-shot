@@ -69,10 +69,10 @@ def api_list_hats(request, location_vo_id=None):
 
 
 @require_http_methods(["GET", "PUT", "DELETE"])
-def api_show_hat(request, pk):
+def api_show_hat(request, id):
     if request.method == "GET":
         try:
-            hat = Hat.objects.get(id=pk)
+            hat = Hat.objects.get(id=id)
             return JsonResponse(
                 hat,
                 encoder=HatDetailEncoder,
@@ -84,7 +84,7 @@ def api_show_hat(request, pk):
             return response
     elif request.method == "DELETE":
         try:
-            hat = Hat.objects.get(id=pk)
+            hat = Hat.objects.get(id=id)
             hat.delete()
             # correct???:
             return JsonResponse(
@@ -99,7 +99,7 @@ def api_show_hat(request, pk):
         try:
             content = json.loads(request.body)
             # correct???:
-            location = Hat.objects.get(id=pk)
+            location = Hat.objects.get(id=id)
 
             props = ["id", "fabric", "style_name", "color", "picture_url", "location",]
             for prop in props:
