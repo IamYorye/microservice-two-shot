@@ -5,13 +5,20 @@ import json
 from common.json import ModelEncoder
 from .models import Shoes, BinVO
 
-class BinVoEncoder(ModelEncoder):
+class BinEncoder(ModelEncoder):
     model = BinVO
     properties = ["import_href", "closet_name", "bin_number", "bin_size"]
 
 class ShoesListEnconder(ModelEncoder):
     model = Shoes
-    properties = ["name", "id"]
+    properties = [
+        "name",
+        "id",
+        "bin",
+        ]
+
+    def get_extra_data(self, o):
+        return {"bin": o.bin.closet_name}
 
 class ShoesDetailEncoder(ModelEncoder):
     model = Shoes
@@ -24,8 +31,11 @@ class ShoesDetailEncoder(ModelEncoder):
         "bin",
     ]
     encoders = {
-        "bin": BinVoEncoder
+        "bin": BinEncoder()
     }
+
+    def get_extra_data(self, o):
+        return {"bin": o.bin.closet_name}
 
 
 @require_http_methods(["GET", "POST"])

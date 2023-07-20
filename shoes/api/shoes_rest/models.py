@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.urls import reverse
 
 # Create your models here.
 
@@ -23,5 +23,8 @@ class Shoes(models.Model):
         on_delete=models.CASCADE,
     )
 
-def __str__(self):
-    return self.name
+    def __str__(self):
+        return self.name
+
+    def get_api_url(self):
+        return reverse("api_show_shoes", kwargs={"pk": self.pk})
