@@ -5,9 +5,9 @@ import json
 from common.json import ModelEncoder
 from .models import Shoes, BinVO
 
-class BinVoDetailEncoder(ModelEncoder):
+class BinVoEncoder(ModelEncoder):
     model = BinVO
-    properties = ["id", "import_href", "closet_name", "bin_number", "bin_size"]
+    properties = ["import_href", "closet_name", "bin_number", "bin_size"]
 
 class ShoesListEnconder(ModelEncoder):
     model = Shoes
@@ -21,10 +21,10 @@ class ShoesDetailEncoder(ModelEncoder):
         "name",
         "color",
         "picture_url",
-        "wardrobe_bin"
+        "bin",
     ]
     encoders = {
-        "wardrboe_bin": BinVoDetailEncoder
+        "bin": BinVoEncoder
     }
 
 
@@ -41,11 +41,10 @@ def api_list_shoes(request, bin_vo_id=None):
         )
     else:
         content = json.loads(request.body)
-
         try:
-            bin_href = content["wardrobe_bin"]
-            wardrobe_bin = BinVO.objects.get(import_href=bin_href)
-            content["wardrobe_bin"] = wardrobe_bin
+            bin_href = content["bin"]
+            bin = BinVO.objects.get(import_href=bin_href)
+            content["bin"] = bin
         except BinVO.DoesNotExist:
             return JsonResponse(
                 {"message": "Bin does not exist"},
@@ -84,7 +83,7 @@ def api_show_shoes(request, pk):
             content = json.loads(request.body)
             shoes = Shoes.objects.get(id=pk)
 
-            props = ["id", "manufacturer", "name", "color", "picture_url", "wardrobe_bin"]
+            props = ["id", "manufacturer", "name", "color", "picture_url", "bin"]
             for prop in props:
                 if prop in content:
                     setattr(shoes, prop, content[prop])
