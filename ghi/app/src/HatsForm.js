@@ -9,7 +9,6 @@ function HatsForm(props) {
     const [locations, setLocations] = useState([])
 
 
-
     const handleStyleNameChange = (event) => {
         const value = event.target.value;
         setStyleName(value);
