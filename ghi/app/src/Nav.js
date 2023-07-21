@@ -19,9 +19,6 @@ function Nav() {
             <li className='nav-item'>
               <NavLink className="nav-link" to="/shoes/new">Create a Shoe</NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/hats">Hats</NavLink>
-            </li>
           </ul>
         </div>
       </div>
