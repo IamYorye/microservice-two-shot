@@ -32,7 +32,7 @@ function ShoesList({ shoes }) {
                             <td>{shoe.manufacturer}</td>
                             <td>{shoe.color}</td>
                             <td>
-                                <img src={shoe.picture_url} className="img-thumbnail" alt="shoe" />
+                                <img src={shoe.picture_url} className="img-thumbnail" width={300} height={250} alt="shoe" />
                             </td>
                             <td>
                                 <button onClick={(e) => deleteShoe(shoe.id)} className="btn btn-secondary">Delete</button>
