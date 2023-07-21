@@ -13,5 +13,8 @@ Created a shoes model with certain attributes in the shoes microservice.  Create
 
 ## Hats microservice
 
-Explain your models and integration with the wardrobe
-microservice, here.
+Jaspreet and I determined from the beginning of our project that we would first go through git commands and master the process of merging, pulling, and pushing our changes. Once we felt comfortable with this, we then agreed to start with the back end prior to moving over to the front end.
+
+I created a hats model, which contains the attributes described in the project specifications: fabric, style name, color, picture url, and location in wardrobe. I then created the functions views that coorespond with the model, and view paths for handling of GET, POST, DELETE, and PUT. During each component, I went into Insomnia and checked each element, and error handled as necessary. I created encoders, and then moved over to integration of polling to fetch data from the database communicating with the hats and wardrobe APIs, running every 15 seconds. Additionally, I went in the browser, created a superuserer, and added locations and hats as desired.
+
+Both Jaspreet and I communicated effectively each time we got through different elements of our code, and worked together to integrate our changes and save our work in a consistent fashion. We moved over to front end utilizing React for the visual interface. I created a hat form for adding a hat, a delete button to remove a hat, and displayed the list of hats that were added. Once all functionality was complete, Jaspreet and I integrated all of our work, checked each component seperately, and verbally shook hands on the results(we met the specs that were outlined for our practice project).
