@@ -89,24 +89,24 @@ function ShoesForm(props) {
                     <h1>Create a Shoe</h1>
                     <form onSubmit={handleSubmit} id="create-shoes-form">
                         <div className="form-floating mb-3">
-                            <input onChange={handleManufacturerChange} placeholder="Manufacturer" required type="text" name="manufacturer" id="manufacturer" className="form-control" />
+                            <input onChange={handleManufacturerChange} value={manufacturer} placeholder="Manufacturer" required type="text" name="manufacturer" id="manufacturer" className="form-control" />
                             <label htmlFor="manufacturer">Manufacturer</label>
                         </div>
 
                         <div className="form-floating mb-3">
-                            <input onChange={handleNameChange} placeholder="Name" required type="text" name="name" id="name" className="form-control" />
+                            <input onChange={handleNameChange} value={name} placeholder="Name" required type="text" name="name" id="name" className="form-control" />
                             <label htmlFor="name">Name</label>
                         </div>
 
                         <div className="form-floating mb-3">
-                            <input onChange={handleColorChange} placeholder="Color" required type="text" name="color" id="color" className="form-control" />
+                            <input onChange={handleColorChange} value={color} placeholder="Color" required type="text" name="color" id="color" className="form-control" />
                             <label htmlFor="ends">Color</label>
                         </div>
 
                         <div className="form-floating mb-3">
-                            <input onChange={handlePictureUrlChange} placeholder="PictureUrl" required type="url" name="picture_url" id="picture_url" className="form-control" />
+                            <input onChange={handlePictureUrlChange} value={picture_url} placeholder="PictureUrl" required type="url" name="picture_url" id="picture_url" className="form-control" />
                             <label htmlFor="picture_url">Picture Url</label>
-                            <select onChange={hanldeBinChange} required name="bin" id="bin" className="form-select">
+                            <select onChange={hanldeBinChange} value={bin} required name="bin" id="bin" className="form-select">
                                 <option value="">Choose a Bin</option>
                                 {bins.map(bin => {
                                     return (
