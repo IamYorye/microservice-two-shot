@@ -49,7 +49,7 @@ def api_list_hats(request, location_vo_id=None):
             hats = Hat.objects.all()
         return JsonResponse(
             {"hats": hats},
-            encoder=HatListEncoder,
+            encoder=HatDetailEncoder,
         )
     else:
         content = json.loads(request.body)
