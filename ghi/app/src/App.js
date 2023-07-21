@@ -29,7 +29,7 @@ function App(props) {
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="shoes" element={<ShoesList shoes={shoes} />} />
-          <Route path="shoes/new" element={<ShoesForm />} />
+          <Route path="shoes/new" element={<ShoesForm getShoes={getShoes} />} />
         </Routes>
       </div>
     </BrowserRouter>

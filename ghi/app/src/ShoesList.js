@@ -1,4 +1,17 @@
 function ShoesList({ shoes }) {
+    const deleteShoe = async (id) => {
+        const shoesUrl = `http://localhost:8080/api/shoes/${id}`
+        const fetchConfig = {
+            method: 'delete',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        }
+        const response = await fetch(shoesUrl, fetchConfig)
+        if (response.ok) {
+            window.location.reload()
+        }
+    }
     return (
         <table className="table table-dark table-hover">
             <thead>
@@ -17,6 +30,12 @@ function ShoesList({ shoes }) {
                             <td>{shoe.bin}</td>
                             <td>{shoe.manufacturer}</td>
                             <td>{shoe.color}</td>
+                            <td>
+                                <img src={shoe.picture_url} className="card-img-top" max-height={100} alt="shoe" />
+                            </td>
+                            <td>
+                                <button onClick={(e) => deleteShoe(shoe.id)} className="btn btn-secondary">Delete</button>
+                            </td>
                         </tr>
                     )
                 })}
