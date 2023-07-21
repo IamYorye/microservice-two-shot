@@ -12,6 +12,7 @@ function ShoesList({ shoes }) {
             window.location.reload()
         }
     }
+
     return (
         <table className="table table-dark table-hover">
             <thead>
@@ -31,7 +32,7 @@ function ShoesList({ shoes }) {
                             <td>{shoe.manufacturer}</td>
                             <td>{shoe.color}</td>
                             <td>
-                                <img src={shoe.picture_url} className="card-img-top" max-height={10} alt="shoe" />
+                                <img src={shoe.picture_url} className="img-thumbnail" alt="shoe" />
                             </td>
                             <td>
                                 <button onClick={(e) => deleteShoe(shoe.id)} className="btn btn-secondary">Delete</button>
