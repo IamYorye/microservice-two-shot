@@ -6,7 +6,7 @@ class LocationVO(models.Model):
     import_href = models.CharField(max_length=200, null=True)
 
 
-# Create your models here.
+# Create your models here -> How we make our front-end a single page in the browser
 class Hat(models.Model):
     fabric = models.CharField(max_length=200)
     style_name = models.CharField(max_length=200)
@@ -22,4 +22,4 @@ class Hat(models.Model):
         return reverse("api_show_hat", kwargs={"pk": self.pk})
 
     def __str__(self):
-        return self.name
+        return self.style_name

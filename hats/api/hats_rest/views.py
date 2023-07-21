@@ -35,6 +35,8 @@ class HatDetailEncoder(ModelEncoder):
     encoders = {
         "location": LocationVOEncoder(),
     }
+    def get_extra_data(self, o):
+        return {"location": o.location.closet_name}
 
 
 # Create your views here.
@@ -47,7 +49,7 @@ def api_list_hats(request, location_vo_id=None):
             hats = Hat.objects.all()
         return JsonResponse(
             {"hats": hats},
-            encoder=HatListEncoder,
+            encoder=HatDetailEncoder,
         )
     else:
         content = json.loads(request.body)
@@ -84,34 +86,52 @@ def api_show_hat(request, id):
             return response
     elif request.method == "DELETE":
         try:
-            hat = Hat.objects.get(id=id)
-            hat.delete()
-            # correct???:
-            return JsonResponse(
-                hat,
-                encoder=HatDetailEncoder,
-                safe=False,
-            )
-
+            count, _ = Hat.objects.filter(id=id).delete()
+            return JsonResponse({"deleted": count > 0})
         except Hat.DoesNotExist:
             return JsonResponse({"message": "Does not exist"})
-    else: # PUT Request
+    else:
+        content = json.loads(request.body)
         try:
-            content = json.loads(request.body)
-            # correct???:
-            location = Hat.objects.get(id=id)
-
-            props = ["id", "fabric", "style_name", "color", "picture_url", "location",]
-            for prop in props:
-                if prop in content:
-                    setattr(hat, prop, content[prop])
-            hat.save()
+            if "location" in content:
+                location = LocationVO.objects.get(id=content["location"])
+                content["location"] = location
+        except LocationVO.DoesNotExist:
             return JsonResponse(
-                hat,
-                encoder=HatDetailEncoder,
-                safe=False,
+                {"message": "Invalid location id"},
+                status=400,
             )
-        except Hat.DoesNotExist:
-            response = JsonResponse({"message": "Does not exist"})
-            response.status_code = 404
-            return response
+
+        Hat.objects.filter(id=id).update(**content)
+        hat = Hat.objects.get(id=id)
+        return JsonResponse(
+            hat,
+            encoder=HatDetailEncoder,
+            safe=False,
+        )
+
+
+
+
+
+
+
+    # else: # PUT Request
+    #     try:
+    #         content = json.loads(request.body)
+    #         hat = Hat.objects.get(id=id)
+
+    #         props = ["id", "fabric", "style_name", "color", "picture_url", "location",]
+    #         for prop in props:
+    #             if prop in content:
+    #                 setattr(hat, prop, content[prop])
+    #         hat.save()
+    #         return JsonResponse(
+    #             hat,
+    #             encoder=HatDetailEncoder,
+    #             safe=False,
+    #         )
+    #     except Hat.DoesNotExist:
+    #         response = JsonResponse({"message": "Does not exist"})
+    #         response.status_code = 404
+    #         return response
