@@ -46,6 +46,7 @@ function App(props) {
           <Route path="hats" element={< HatsList hats={hats} />} />
           <Route path="shoes" element={<ShoesList shoes={shoes} />} />
           <Route path="shoes/new" element={<ShoesForm getShoes={getShoes} />} />
+          <Route path="edit/:shoeId" element={<ShoesForm isEditForm={true} getShoes={getShoes} />} />
         </Routes>
       </div>
     </BrowserRouter>
