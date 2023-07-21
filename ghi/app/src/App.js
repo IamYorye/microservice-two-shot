@@ -5,8 +5,6 @@ import ShoesForm from './ShoesForm';
 import ShoesList from './ShoesList';
 import { useEffect, useState } from 'react';
 
-
-
 function App(props) {
   const [shoes, setShoes] = useState([])
   async function getShoes() {
