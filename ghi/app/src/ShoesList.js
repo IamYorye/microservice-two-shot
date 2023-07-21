@@ -1,3 +1,5 @@
+import { NavLink, useParams, Link } from "react-router-dom"
+
 function ShoesList({ shoes }) {
     const deleteShoe = async (id) => {
         const shoesUrl = `http://localhost:8080/api/shoes/${id}`
@@ -13,6 +15,7 @@ function ShoesList({ shoes }) {
         }
     }
 
+
     return (
         <table className="table table-dark table-hover">
             <thead>
@@ -23,6 +26,7 @@ function ShoesList({ shoes }) {
                     <th>Color</th>
                     <th>Picture</th>
                     <th>Delete</th>
+                    <th>Edit</th>
                 </tr>
             </thead>
             <tbody>
@@ -38,6 +42,9 @@ function ShoesList({ shoes }) {
                             </td>
                             <td>
                                 <button onClick={(e) => deleteShoe(shoe.id)} className="btn btn-secondary">Delete</button>
+                            </td>
+                            <td>
+                                <Link to={`edit/${shoe.id}`}>Edit Shoe</Link>
                             </td>
                         </tr>
                     )

@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
-function ShoesForm(props) {
+function ShoesForm(props, isEditForm) {
     const [manufacturer, setManufacturer] = useState("")
     const [name, setName] = useState("")
     const [color, setColor] = useState("")
     const [picture_url, setPictureUrl] = useState("")
     const [bin, setBin] = useState("")
     const [bins, setBins] = useState([])
+    const { shoeId } = useParams('')
+
 
     const handleManufacturerChange = (event) => {
         const value = event.target.value
