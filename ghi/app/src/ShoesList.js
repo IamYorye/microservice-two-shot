@@ -21,6 +21,8 @@ function ShoesList({ shoes }) {
                     <th>Bin</th>
                     <th>Manufacturer</th>
                     <th>Color</th>
+                    <th>Picture</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
