@@ -40,7 +40,7 @@ function HatsForm(props) {
         data.picture_url = picture_url;
         console.log(data);
 
-        const HatUrl = 'http://localhost:8090/api/hats/';
+        const hatUrl = 'http://localhost:8090/api/hats/';
         const fetchConfig = {
             method: "post",
             body: JSON.stringify(data),
@@ -49,7 +49,7 @@ function HatsForm(props) {
             },
         };
 
-        const response = await fetch(HatUrl, fetchConfig);
+        const response = await fetch(hatUrl, fetchConfig);
         if (response.ok) {
             const newHat = await response.json();
             console.log(newHat);
